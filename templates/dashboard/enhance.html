@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Roboto+Condensed:wght@300;400&display=swap"
+    rel="stylesheet">
+{% block headblock %}
+<link rel="stylesheet" href="{% static 'dashboard/css/enhance.css' %} ">
+{% endblock %}
+{% block content %}
+
+<div class="enhance-container">
+    {%if form %}
+    <div class="enhance-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="button-div">
+                <button class="mybutton" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="enhance-answer">
+        {% if gpt %}
+        {{gpt}}
+        {% endif %}
+        
+    </div>
+    {%else%}
+    <h1>{{message}}</h1>
+    {%endif%}
+</div>
+{% endblock %}

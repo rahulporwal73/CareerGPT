@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Roboto+Condensed:wght@300;400&display=swap"
+    rel="stylesheet">
+{% block headblock %}
+<link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %} ">
+{% endblock %}
+{% block content %}
+
+<div class="dash-main">
+    <div class="dash-title">
+        <ul>
+            <li>Best roles for you</li>
+        </ul>
+    </div>
+    <div class="roles">
+        {% if roles %}
+        <div class='role-main'>
+            {% for role in roles %}
+            <div class='{% if forloop.last %}each-role2{% else %}each-role{% endif %}'>
+                <p class='role'>
+                    {{ role }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="skill-gap">
+        <!-- Add the new Job Role Form -->
+        <div class="dash-title">
+            <ul>
+                <li>Skill Gap Analysis: Bridging the Path to Success</li>
+            </ul>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ role_form.as_p }}
+            <div class="button-div">
+                <input type="submit" value="Find Gap">
+            </div>
+        </form>
+        {%if skills %}
+        <div class="skills-upgrade-div">
+
+        <div class="dash-subtitle">
+            Explore Your Learning Journey: Discover Resources to Master These Essential Skills. Each skill listed below is a valuable asset on your learning path. Click on each link to access a wealth of resources that will help you get started and become a proficient master of each skill.
+        </div>
+        <div class="skills-upgrade-container">
+        {% for skill in skills %}
+        <a href="{% url "dashboard:courses" skill_name=skill %}"">
+        <div class="skill-button">
+        {{ skill }}
+        </div>
+        </a>
+        {% endfor %}
+        </ul>
+        </div>
+        {% endif %}
+        </div>
+        {% else %}
+        <h2>{{ message }}</h2>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
