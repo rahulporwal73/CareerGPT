@@ -2,6 +2,8 @@
 
 Welcome to CareerGPT, the revolutionary AI-powered platform designed to empower you in your career journey. CareerGPT leverages the cutting-edge Generative AI, GPT-4, to provide a range of powerful features that will transform the way you approach job hunting, resume optimization, and skill development.
 
+For more info and to watch a video demo - https://devpost.com/software/careergpt 
+
 ## Contents
 
 - [Signup](#signup)
